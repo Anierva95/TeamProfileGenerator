@@ -1,12 +1,16 @@
-class Engineer {
-    constructor(name, id, title, github) {
-        super(name, id, title);
+const Employee = require('./Employee');
+
+class Engineer extends Employee {
+    constructor(name, id, email, github) {
+        super(name, id, email);
         this.github = github;
     }
     getGithub() {
-        // Grab github from inquirer
+        return this.github;
     }
     getRole() {
         return 'Engineer';
     }
 }
+
+module.exports = Engineer;
