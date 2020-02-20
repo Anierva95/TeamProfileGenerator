@@ -5,6 +5,7 @@ const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
 const chalk = require('chalk');
 const Engineer = require('./lib/Engineer');
+const Render = require('./lib/htmlRenderer');
 
 // Inititalize empty Employee array
 const employees = [];
@@ -90,7 +91,7 @@ const addIntern = () => {
     const newIntern = new Intern(answer.name, answer.id, answer.email, answer.school);
     employees.push(newIntern);
 
-    console.log(chalk.blue.inverse('HERE IS EMPLOYEES'));
+    console.log(chalk.blue.inverse('LIST OF EMPLOYEES: '));
     console.log(employees);
 
     addEmployeeLogic(answer);
@@ -148,6 +149,6 @@ const addEmployeeLogic = (answer) => {
     else if (answer.addEmployee === 'Engineer') {
         addEngineer();
     } else {
-
+        Render(employees);
     }
 };
