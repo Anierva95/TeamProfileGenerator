@@ -4,10 +4,13 @@ const Employee = require('./lib/Employee');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
 const chalk = require('chalk');
+const Engineer = require('./lib/Engineer');
 
-
+// Inititalize empty Employee array
 const employees = [];
 
+
+// Start off by asking for manager information
 inquirer
   .prompt([
     {
@@ -38,16 +41,16 @@ inquirer
       }
 
 ]).then(function(answer) {
-    console.log(answer);
-    console.log(answer.addEmployee);
 
+    // Create new Manager
     const newManager = new Manager(answer.name, answer.id, answer.email, answer.officeNumber);
-    console.log(newManager);
 
+    // Add Manager to Employees list
     employees.push(newManager);
     console.log(chalk.blue.inverse('HERE IS EMPLOYEES'));
     console.log(employees);
 
+    // If/else logic function to determine which prompt runs next
     addEmployeeLogic(answer);
 });
 
@@ -82,9 +85,54 @@ const addIntern = () => {
       }
 
 ]).then(function(answer) {
-    console.log(answer);
+
+
     const newIntern = new Intern(answer.name, answer.id, answer.email, answer.school);
     employees.push(newIntern);
+
+    console.log(chalk.blue.inverse('HERE IS EMPLOYEES'));
+    console.log(employees);
+
+    addEmployeeLogic(answer);
+    
+})
+}
+
+const addEngineer = () => {
+    inquirer
+  .prompt([
+    {
+    type: "input",
+    message: "Please enter the name of the engineer.",
+      name: "name"
+    },
+    {
+      type: "input",
+      message:"Please enter the engineer's Id",
+      name: "id"
+    },
+    {
+      type: "input",
+      message:"The engineer's Email?",
+      name: "email"
+    },
+    {
+      type: "input",
+      message: "What is the engineer's Github username?",
+      name: "github"
+    },
+    {
+        type: "list",
+        message: "Would you like to add an additonal employee?",
+        name: "addEmployee",
+        choices: ['Engineer', 'Intern', 'Neither']
+      }
+
+]).then(function(answer) {
+
+    const newEngineer = new Engineer(answer.name, answer.id, answer.email, answer.github);
+    employees.push(newEngineer);
+
     console.log(chalk.blue.inverse('HERE IS EMPLOYEES'));
     console.log(employees);
 
@@ -98,7 +146,7 @@ const addEmployeeLogic = (answer) => {
         addIntern();
     }
     else if (answer.addEmployee === 'Engineer') {
-        // Add Engineer
+        addEngineer();
     } else {
 
     }
