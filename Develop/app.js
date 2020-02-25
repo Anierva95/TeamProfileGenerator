@@ -49,7 +49,7 @@ inquirer
     // Add Manager to Employees list
     employees.push(newManager);
     console.log(chalk.blue.inverse('HERE IS EMPLOYEES'));
-    console.log(employees);
+    console.table(employees);
 
     // If/else logic function to determine which prompt runs next
     addEmployeeLogic(answer);
@@ -92,7 +92,8 @@ const addIntern = () => {
     employees.push(newIntern);
 
     console.log(chalk.blue.inverse('LIST OF EMPLOYEES: '));
-    console.log(employees);
+    console.table(employees);
+    console.log(chalk.green.inverse('Team HTML page successfully generated!'))
 
     addEmployeeLogic(answer);
     
@@ -135,7 +136,7 @@ const addEngineer = () => {
     employees.push(newEngineer);
 
     console.log(chalk.blue.inverse('HERE IS EMPLOYEES'));
-    console.log(employees);
+    console.table(employees);
 
     addEmployeeLogic(answer);
     
